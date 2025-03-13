@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import { Button, Card, CardContent, Typography, Container } from "@mui/material";
+
+function App() {
+  const [showCard, setShowCard] = useState(false);
+
+  const toggleCard = () => {
+    setShowCard(!showCard);
+  };
+
+  return (
+    <Container 
+      maxWidth="sm" 
+      style={{
+        textAlign: "center",
+        marginTop: "50px",
+        padding: "30px",
+        backgroundColor: "#f5f5f5", // Light gray background
+        borderRadius: "10px", // Rounded corners
+        boxShadow: "0px 4px 10px rgba(0,0,0,0.2)", // Soft shadow
+      }}
+    >
+      {/* Title */}
+      <Typography variant="h4" gutterBottom style={{ color: "#333" }}>
+        Material UI Toggle Card
+      </Typography>
+
+      {/* Material UI Button */}
+      <Button 
+        variant="contained" 
+        color="primary" 
+        onClick={toggleCard}
+        style={{ padding: "10px 20px", fontSize: "16px", borderRadius: "8px" }}
+      >
+        {showCard ? "Hide Card" : "Show Card"}
+      </Button>
+
+      {/* Show Card if showCard is true */}
+      {showCard && (
+        <Card 
+          style={{ 
+            maxWidth: 350, 
+            margin: "20px auto", 
+            padding: "15px", 
+            borderRadius: "10px",
+            boxShadow: "0px 4px 10px rgba(0,0,0,0.3)" // Adding shadow effect
+          }}
+        >
+          <CardContent>
+            <Typography variant="h5" style={{ color: "#1976D2" }}> {/* Blue color title */}
+              Beautiful Card
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              This card appears when you click the button. It has a modern design!
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
+    </Container>
+  );
+}
+
+export default App;
