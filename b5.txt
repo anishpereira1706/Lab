@@ -1,0 +1,54 @@
+1. HTTP Server
+Create a folder
+Open terminal in vs code
+Run command:
+
+npm init -y
+Create a file Index.js
+Index.js
+const http = require(&#39;http&#39;); // Import the HTTP module
+
+// Create the server
+const server = http.createServer((req, res) =&gt; {
+res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); // Set
+response headers
+res.end(&#39;Hello, World!&#39;); // Send &quot;Hello, World!&quot; as the response
+});
+
+// Make the server listen on port 1337
+server.listen(1337, () =&gt; {
+console.log(&#39;Server is running on http://localhost:1337&#39;); // Log
+message
+});
+
+Run Command:
+node Index.js
+Go to Browser http://localhost:1337
+
+2. Using Express
+Create a folder
+Open terminal in vs code
+Run command:
+npm init -y
+npm install express
+
+Create a file Server.js
+Server.js
+const express = require(&#39;express&#39;); // Import Express
+const app = express(); // Create an instance of Express
+
+// Define a route for the root URL (&quot;/&quot;)
+app.get(&#39;/&#39;, (req, res) =&gt; {
+res.send(&#39;Hello, World!&#39;); // Send &quot;Hello, World!&quot; as the
+response
+});
+
+// Make the app listen on port 1337
+app.listen(1337, () =&gt; {
+console.log(&#39;Server is running on http://localhost:1337&#39;); // Log
+message
+});
+
+Run Command:
+node Server.js
+Go to Browser http://localhost:1337

@@ -1,0 +1,52 @@
+//Button.js
+
+import React from "react";
+
+function Button(props) {
+  function handleClick() {
+    props.onClick(props.label);
+  }
+
+  return (
+    <button onClick={handleClick} style={{ padding: "10px", margin: "10px", fontSize: "16px" }}>
+      {props.label}
+    </button>
+  );
+}
+
+export default Button;
+
+
+//App.js
+import React, { useState } from "react";
+import Button from "./Button";
+
+function App() {
+  const [clickCounts, setClickCounts] = useState({ Button1: 0, Button2: 0, Button3: 0 });
+
+  function handleButtonClick(label) {
+    alert(label + " was clicked!");
+
+    setClickCounts((prevCounts) => ({
+      ...prevCounts,
+      [label]: prevCounts[label] + 1,
+    }));
+  }
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Button Click Tracker</h1>
+      <Button label="Button1" onClick={handleButtonClick} />
+      <Button label="Button2" onClick={handleButtonClick} />
+      <Button label="Button3" onClick={handleButtonClick} />
+      
+      <div style={{ marginTop: "20px", fontSize: "18px" }}>
+        <p>Button1 Clicks: {clickCounts.Button1}</p>
+        <p>Button2 Clicks: {clickCounts.Button2}</p>
+        <p>Button3 Clicks: {clickCounts.Button3}</p>
+      </div>
+    </div>
+  );
+}
+
+export default App;

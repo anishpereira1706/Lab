@@ -1,0 +1,53 @@
+//CountryDropdown.js
+import React from "react";
+
+function CountryDropdown(props) {
+  function handleChange(event) {
+    props.onSelect(event.target.value);
+  }
+
+  return (
+    <select onChange={handleChange} style={{ padding: "10px", fontSize: "16px" }}>
+      <option value="">Select a Country</option>
+      {props.countries.map((country) => (
+        <option key={country.name} value={country.name}>
+          {country.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+export default CountryDropdown;
+
+
+//App.js
+import React, { useState } from "react";
+import CountryDropdown from "./CountryDropdown";
+
+function App() {
+  const [capital, setCapital] = useState("");
+
+  const countries = [
+    { name: "United States", capital: "Washington, D.C." },
+    { name: "India", capital: "New Delhi" },
+    { name: "France", capital: "Paris" },
+    { name: "Germany", capital: "Berlin" },
+    { name: "Japan", capital: "Tokyo" },
+  ];
+
+  function handleCountrySelect(countryName) {
+    const country = countries.find((c) => c.name === countryName);
+    setCapital(country ? country.capital : "");
+  }
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Country and Capital Finder</h1>
+      <CountryDropdown countries={countries} onSelect={handleCountrySelect} />
+      {capital && <p style={{ fontSize: "20px", marginTop: "20px" }}>Capital: {capital}</p>}
+    </div>
+  );
+}
+
+export default App;
